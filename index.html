@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>กรมกิจการเด็กและเยาวชน - ลงทะเบียน</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 40px 16px;
+        }
+        .form-container {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+            width: 100%;
+            max-width: 720px;
+            padding: 40px;
+        }
+        .form-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 2px solid #e8e8e8;
+        }
+        .form-header h1 {
+            font-size: 1.5rem;
+            color: #1a3a5c;
+            margin-bottom: 6px;
+        }
+        .form-header p {
+            font-size: 0.9rem;
+            color: #888;
+        }
+        .section-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1a3a5c;
+            margin: 28px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .form-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .form-group.full {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 6px;
+        }
+        label .required {
+            color: #e74c3c;
+            margin-left: 2px;
+        }
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #d0d5dd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            color: #333;
+            background: #fafafa;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            font-family: inherit;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+            background: #fff;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 24px 0 28px;
+            padding: 16px;
+            background: #f8f9fb;
+            border-radius: 8px;
+            border: 1px solid #e8e8e8;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: #3b82f6;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .checkbox-group label {
+            font-weight: 400;
+            color: #555;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            background: #1a3a5c;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-submit:hover { background: #15304d; }
+        .btn-submit:active { transform: scale(0.995); }
+
+        @media (max-width: 600px) {
+            .form-row { flex-direction: column; gap: 20px; }
+            .form-container { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <h1>กรมกิจการเด็กและเยาวชน</h1>
+            <p>แบบฟอร์มลงทะเบียน / Registration Form</p>
+        </div>
+
+        <form action="http://dcywah.dcy.go.th/opp/app/register.php" method="POST">
+
+            <!-- ID Card -->
+            <div class="form-group full">
+                <label for="idcard">เลขบัตรประชาชน (CARD ID) <span class="required">*</span></label>
+                <input type="text" id="idcard" name="idcard" maxlength="13" placeholder="กรอกเลขบัตรประชาชน 13 หลัก" required>
+            </div>
+
+            <!-- Thai Name Section -->
+            <div class="section-title">ข้อมูลภาษาไทย</div>
+
+            <div class="form-row">
+                <div class="form-group" style="flex: 0.6;">
+                    <label for="PREFIX_TH">คำนำหน้า <span class="required">*</span></label>
+                    <select id="PREFIX_TH" name="PREFIX_TH" required>
+                        <option value="">-- เลือก --</option>
+                        <option value="นาย">นาย</option>
+                        <option value="นาง">นาง</option>
+                        <option value="นางสาว">นางสาว</option>
+                        <option value="เด็กชาย">เด็กชาย</option>
+                        <option value="เด็กหญิง">เด็กหญิง</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="NAME_TH">ชื่อ (ภาษาไทย) <span class="required">*</span></label>
+                    <input type="text" id="NAME_TH" name="NAME_TH" placeholder="ชื่อ" required>
+                </div>
+                <div class="form-group">
+                    <label for="LASTNAME_TH">นามสกุล (ภาษาไทย) <span class="required">*</span></label>
+                    <input type="text" id="LASTNAME_TH" name="LASTNAME_TH" placeholder="นามสกุล" required>
+                </div>
+            </div>
+
+            <!-- English Name Section -->
+            <div class="section-title">English Information</div>
+
+            <div class="form-row">
+                <div class="form-group" style="flex: 0.6;">
+                    <label for="PREFIX_EN">Prefix <span class="required">*</span></label>
+                    <select id="PREFIX_EN" name="PREFIX_EN" required>
+                        <option value="">-- Select --</option>
+                        <option value="MR">MR</option>
+                        <option value="MRS">MRS</option>
+                        <option value="MS">MS</option>
+                        <option value="MASTER">MASTER</option>
+                        <option value="MISS">MISS</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="test_txt1">First Name (EN) <span class="required">*</span></label>
+                    <input type="text" id="test_txt1" name="NAME_EN" placeholder="First name" required>
+                </div>
+                <div class="form-group">
+                    <label for="test_txt2">Last Name (EN) <span class="required">*</span></label>
+                    <input type="text" id="test_txt2" name="LASTNAME_EN" placeholder="Last name" required>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="section-title">ข้อมูลติดต่อ / Contact</div>
+
+            <div class="form-group full">
+                <label for="EMAIL">อีเมล (Email) <span class="required">*</span></label>
+                <input type="email" id="EMAIL" name="EMAIL" placeholder="example@email.com" required>
+            </div>
+
+            <div class="form-group full">
+                <label for="ADDRESS">ที่อยู่ (Address) <span class="required">*</span></label>
+                <textarea id="ADDRESS" name="ADDRESS" placeholder="กรอกที่อยู่" required></textarea>
+            </div>
+
+            <!-- Accept -->
+            <div class="checkbox-group">
+                <input type="checkbox" id="ckAccept" name="ckAccept" value="true" required>
+                <label for="ckAccept">ข้าพเจ้ายินยอมให้ใช้ข้อมูลส่วนบุคคลเพื่อการลงทะเบียน / I agree to the terms and conditions</label>
+            </div>
+
+            <button type="submit" class="btn-submit">ลงทะเบียน / Register</button>
+        </form>
+    </div>
+</body>
+</html>
